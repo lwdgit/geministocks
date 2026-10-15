@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { ResearchIcon } from './icons/ResearchIcons';
 import LanguageSwitcher from './LanguageSwitcher';
 import { useI18n } from '../hooks/useI18n';
+import { OrbitIcon } from './WorkspaceNav';
 
 interface AppHeaderProps {
   apiConfigured: boolean;
@@ -41,6 +42,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({ apiConfigured, onOpenUserGuide, o
           {/* Right side: Controls */}
           <div className="flex items-center gap-x-2 sm:gap-x-6">
             <span className="hidden xl:block text-xs text-stone-500">{locale === 'zh' ? (apiConfigured ? '模型已配置' : '未配置模型') : (apiConfigured ? 'Model ready' : 'No model configured')}</span>
+            <a data-monk-switcher href="https://universe.monk.party/" className="hidden sm:flex lg:hidden min-h-11 min-w-11 items-center justify-center rounded-lg border border-stone-300 bg-white hover:bg-stone-100" aria-label={locale === 'zh' ? 'monk 宇宙：切换到其他服务' : 'monk universe: switch to another service'}><OrbitIcon className="w-5 h-5" /></a>
             {/* API Settings button */}
             <button
               onClick={onOpenApiSettings}
@@ -63,6 +65,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({ apiConfigured, onOpenUserGuide, o
                 </div>
                 <button onClick={() => { setMenuOpen(false); onOpenUserGuide(); }} className="w-full min-h-11 rounded-lg px-3 text-left text-sm hover:bg-stone-50">{t('header.userGuide')}</button>
                 <div className="py-2 sm:hidden"><LanguageSwitcher /></div>
+                <a data-monk-switcher href="https://universe.monk.party/" onClick={() => setMenuOpen(false)} className="flex min-h-11 items-center gap-2 px-3 text-sm hover:bg-stone-50 rounded-lg lg:hidden"><OrbitIcon className="w-4 h-4" />{locale === 'zh' ? 'monk 宇宙' : 'monk universe'}</a>
                 <a href="https://stocks.mastersgo.cc" target="_blank" rel="noopener noreferrer" className="flex min-h-11 items-center px-3 text-sm hover:bg-stone-50 rounded-lg">{locale === 'zh' ? '行业图谱 ↗' : 'Industry map ↗'}</a>
                 <a href="https://h5.fotechwealth.com/pages/startAccount.html?channel=030003&aeCode=B2&invitationCode=997NQD&langType=zhCn" target="_blank" rel="noopener noreferrer" className="flex min-h-11 items-center px-3 text-sm hover:bg-stone-50 rounded-lg">{locale === 'zh' ? '开户 ↗' : 'Open account ↗'}</a>
               </div>}
