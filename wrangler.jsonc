@@ -14,13 +14,5 @@
     "enabled": true
   },
   "routes": [
-    {
-      "pattern": "mastersgo.cc",
-      "custom_domain": true
-    },
-    {
-      "pattern": "www.mastersgo.cc",
-      "custom_domain": true
-    }
   ]
 }
